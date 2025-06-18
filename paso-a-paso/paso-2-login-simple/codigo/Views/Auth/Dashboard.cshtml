@@ -1,0 +1,228 @@
+@{
+    ViewData["Title"] = "Dashboard - Usuario Logueado";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            
+            <!-- Header con título principal -->
+            <div class="text-center mb-4">
+                <h1 class="display-4">🎉 Dashboard</h1>
+                <h2 class="h3 text-muted">¡Login Exitoso!</h2>
+            </div>
+
+            <!-- Tarjeta principal de bienvenida -->
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h3 class="text-center mb-0">✅ Autenticación Exitosa</h3>
+                </div>
+                <div class="card-body text-center">
+                    
+                    <!-- Mensaje de bienvenida principal -->
+                    <div class="alert alert-success" role="alert">
+                        <h4 class="alert-heading">@ViewBag.WelcomeMessage</h4>
+                        <p>Has iniciado sesión correctamente en el sistema.</p>
+                        <hr>
+                        <p class="mb-0">Ahora tienes acceso a todas las funcionalidades del sistema.</p>
+                    </div>
+
+                    <!-- Información del usuario logueado -->
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">👤 Información del Usuario</h5>
+                                    <p><strong>Usuario:</strong> <span class="badge bg-primary">@ViewBag.Username</span></p>
+                                    <p><strong>Email:</strong> @ViewBag.Email</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="card bg-light">
+                                <div class="card-body">
+                                    <h5 class="card-title">🕐 Información de Sesión</h5>
+                                    <p><strong>Hora de Login:</strong> @ViewBag.LoginTime</p>
+                                    <p><strong>Estado:</strong> <span class="badge bg-success">Activo</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Acciones disponibles -->
+                    <div class="d-flex justify-content-center gap-3 flex-wrap">
+                        <a asp-action="Login" class="btn btn-outline-primary">
+                            🔍 Probar Otro Login
+                        </a>
+                        <a asp-action="Logout" class="btn btn-outline-danger">
+                            🚪 Cerrar Sesión
+                        </a>
+                        <button type="button" class="btn btn-outline-secondary" onclick="window.location.reload()">
+                            🔄 Recargar Página
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Lo que has logrado con el Paso 2 -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">🎉 ¡Excelente! ¿Qué Has Logrado en el Paso 2?</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>🛠️ Técnico:</h6>
+                            <ul class="list-unstyled">
+                                <li>✅ Formulario de login completo (username + password)</li>
+                                <li>✅ Validación de credenciales real</li>
+                                <li>✅ Base de datos actualizada con passwords</li>
+                                <li>✅ Dashboard funcional para usuarios logueados</li>
+                                <li>✅ Sistema básico de logout</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>📚 Conceptos:</h6>
+                            <ul class="list-unstyled">
+                                <li>✅ Autenticación web básica</li>
+                                <li>✅ Manejo de estados de sesión</li>
+                                <li>✅ Validación de formularios complejos</li>
+                                <li>✅ Flujo completo de autenticación</li>
+                                <li>✅ UX de aplicaciones web</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Comparación con el Paso 1 -->
+            <div class="card mt-4 border-info">
+                <div class="card-body">
+                    <h5 class="card-title text-info">🔄 Evolución desde el Paso 1</h5>
+                    <div class="table-responsive">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Aspecto</th>
+                                    <th>Paso 1 (Verificar Usuario)</th>
+                                    <th>Paso 2 (Login Simple)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Formulario</strong></td>
+                                    <td>Solo username</td>
+                                    <td>Username + password</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Validación</strong></td>
+                                    <td>¿Usuario existe?</td>
+                                    <td>¿Credenciales correctas?</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Base de Datos</strong></td>
+                                    <td>Sin campo password</td>
+                                    <td>Con campo password</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Resultado</strong></td>
+                                    <td>"Usuario encontrado/no encontrado"</td>
+                                    <td>"Login exitoso" + Dashboard</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Funcionalidad</strong></td>
+                                    <td>Solo verificación</td>
+                                    <td>Login + Logout completo</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Siguiente paso -->
+            <div class="card mt-4 border-warning">
+                <div class="card-body">
+                    <h5 class="card-title text-warning">🚀 ¿Qué Sigue en el Paso 3?</h5>
+                    <p class="card-text">
+                        En el <strong>Paso 3: Login Seguro</strong> vamos a mejorar la seguridad:
+                    </p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>🔒 Seguridad:</h6>
+                            <ul>
+                                <li>🔐 Hashing de contraseñas con BCrypt</li>
+                                <li>🛡️ Validación segura de passwords</li>
+                                <li>📊 Mejor manejo de errores</li>
+                                <li>⚡ Optimizaciones de rendimiento</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>➕ Nuevas Features:</h6>
+                            <ul>
+                                <li>📝 Sistema de registro de usuarios</li>
+                                <li>🔄 Contraseñas encriptadas</li>
+                                <li>✅ Validaciones más robustas</li>
+                                <li>🎯 Preparación para producción</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Advertencia de seguridad -->
+            <div class="card mt-4 border-danger">
+                <div class="card-body">
+                    <h5 class="card-title text-danger">⚠️ Nota Importante sobre Seguridad</h5>
+                    <p class="card-text">
+                        <strong>Este Paso 2 usa contraseñas en texto plano SOLO para aprender.</strong>
+                        En aplicaciones reales, NUNCA se deben guardar contraseñas sin encriptar.
+                    </p>
+                    <p class="card-text">
+                        En el <strong>Paso 3</strong> implementaremos hashing seguro con BCrypt para
+                        proteger las contraseñas correctamente.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Script para mostrar información adicional -->
+<script>
+    // Agregar un poco de interactividad
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mostrar tiempo transcurrido desde el login
+        const loginTimeElement = document.querySelector('.card-body p:contains("Hora de Login")');
+        
+        // Destacar el username del usuario logueado
+        const usernameElement = document.querySelector('.badge.bg-primary');
+        if (usernameElement) {
+            usernameElement.style.fontSize = '1.1em';
+        }
+        
+        // Mensaje de bienvenida después de 2 segundos
+        setTimeout(function() {
+            const alertElement = document.querySelector('.alert-success');
+            if (alertElement) {
+                alertElement.style.animation = 'pulse 1s ease-in-out';
+            }
+        }, 2000);
+    });
+</script>
+
+<!-- CSS adicional para animaciones -->
+<style>
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+    
+    .card {
+        transition: transform 0.2s ease-in-out;
+    }
+    
+    .card:hover {
+        transform: translateY(-2px);
+    }
+</style>

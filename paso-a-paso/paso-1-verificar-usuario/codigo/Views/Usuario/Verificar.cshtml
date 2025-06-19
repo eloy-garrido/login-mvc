@@ -1,0 +1,100 @@
+@model VerificarUsuario.Models.VerificarUsuarioViewModel
+
+@{
+    ViewData["Title"] = "Verificar Usuario";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            
+            <!-- Header con título principal -->
+            <div class="text-center mb-4">
+                <h1 class="display-4">🔍 Paso 1</h1>
+                <h2 class="h3 text-muted">Verificar si Usuario Existe</h2>
+            </div>
+
+            <!-- Tarjeta principal del formulario -->
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="text-center mb-0">Buscar Usuario</h3>
+                </div>
+                <div class="card-body">
+                    
+                    <!-- Explicación de lo que hace este paso -->
+                    <div class="alert alert-info" role="alert">
+                        <strong>¿Qué hace este paso?</strong><br>
+                        Solo verifica si un nombre de usuario existe en la base de datos. 
+                        <strong>Sin contraseñas</strong>, sin login, solo verificar existencia.
+                    </div>
+
+                    <!-- Mostrar mensaje de error si existe -->
+                    @if (!string.IsNullOrEmpty(Model.Mensaje) && !Model.UsuarioEncontrado)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @Model.Mensaje
+                        </div>
+                    }
+
+                    <!-- Formulario de verificación -->
+                    <form asp-action="Verificar" method="post">
+                        @* Token anti-falsificación *@
+                        @Html.AntiForgeryToken()
+                        
+                        <div class="mb-3">
+                            <!-- Campo Username -->
+                            <label asp-for="Username" class="form-label">
+                                <strong>Nombre de Usuario</strong>
+                            </label>
+                            <input asp-for="Username" 
+                                   class="form-control form-control-lg" 
+                                   placeholder="Ingresa el nombre de usuario a buscar"
+                                   autocomplete="username" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                            
+                            <!-- Ayuda para el usuario -->
+                            <div class="form-text">
+                                <small>Usuarios de prueba: <code>admin</code>, <code>maria</code>, <code>carlos</code>, <code>ana</code></small>
+                            </div>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                🔍 Verificar Usuario
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Enlaces adicionales -->
+                    <div class="text-center mt-4">
+                        <hr>
+                        <small class="text-muted">
+                            Paso 1 de 4 - Sistema de Login Progresivo
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información técnica -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">💡 ¿Qué está pasando?</h5>
+                    <ul class="list-unstyled">
+                        <li>✅ <strong>Formulario MVC</strong> - Usando ViewModels y Data Annotations</li>
+                        <li>✅ <strong>Conexión Supabase</strong> - HttpClient con API REST</li>
+                        <li>✅ <strong>Filtro de datos</strong> - Query con <code>?username=eq.valor</code></li>
+                        <li>✅ <strong>Deserialización JSON</strong> - Array de UserModel</li>
+                        <li>✅ <strong>Manejo de errores</strong> - Try-catch y logging</li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Scripts para validación del lado del cliente -->
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

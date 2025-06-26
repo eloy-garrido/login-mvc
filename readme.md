@@ -2,6 +2,9 @@
 
 Este proyecto es un ejercicio educativo que demuestra cómo implementar una conexión a Supabase desde una aplicación ASP.NET Core MVC usando C#. La aplicación permite verificar la conectividad con Supabase como base para desarrollar un sistema de inicio de sesión.
 
+## Autoevaluación
+https://eloy-garrido.github.io/autoevaluacion/
+
 ## Objetivo del Ejercicio
 
 El objetivo principal de este ejercicio es aprender a:

@@ -1,0 +1,159 @@
+@model LoginSimple.Models.LoginViewModel
+
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            
+            <!-- Header con título principal -->
+            <div class="text-center mb-4">
+                <h1 class="display-4">🔐 Paso 2</h1>
+                <h2 class="h3 text-muted">Login con Username + Password</h2>
+            </div>
+
+            <!-- Tarjeta principal del formulario -->
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="text-center mb-0">Iniciar Sesión</h3>
+                </div>
+                <div class="card-body">
+                    
+                    <!-- Explicación de lo que hace este paso -->
+                    <div class="alert alert-info" role="alert">
+                        <strong>🆕 ¡Nuevo en el Paso 2!</strong><br>
+                        Ahora validamos <strong>username + password</strong> para hacer login real.
+                        Contraseña de prueba para todos los usuarios: <code>123456</code>
+                    </div>
+
+                    <!-- Mostrar mensaje de logout si existe -->
+                    @if (TempData["LogoutMessage"] != null)
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @TempData["LogoutMessage"]
+                        </div>
+                    }
+
+                    <!-- Mostrar mensaje de error si existe -->
+                    @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            <strong>❌ Error:</strong> @Model.ErrorMessage
+                        </div>
+                    }
+
+                    <!-- Formulario de login -->
+                    <form asp-action="Login" method="post">
+                        @* Token anti-falsificación *@
+                        @Html.AntiForgeryToken()
+                        
+                        <div class="mb-3">
+                            <!-- Campo Username (IGUAL que Paso 1) -->
+                            <label asp-for="Username" class="form-label">
+                                <strong>@Html.DisplayNameFor(m => m.Username)</strong>
+                            </label>
+                            <input asp-for="Username" 
+                                   class="form-control form-control-lg" 
+                                   placeholder="Ingresa tu nombre de usuario"
+                                   autocomplete="username" />
+                            <span asp-validation-for="Username" class="text-danger"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <!-- 🆕 NUEVO: Campo Password -->
+                            <label asp-for="Password" class="form-label">
+                                <strong>@Html.DisplayNameFor(m => m.Password)</strong>
+                            </label>
+                            <input asp-for="Password" 
+                                   class="form-control form-control-lg" 
+                                   placeholder="Ingresa tu contraseña"
+                                   autocomplete="current-password" />
+                            <span asp-validation-for="Password" class="text-danger"></span>
+                            
+                            <!-- Ayuda para el usuario -->
+                            <div class="form-text">
+                                <small>💡 Contraseña de prueba: <code>123456</code> para todos los usuarios</small>
+                            </div>
+                        </div>
+
+                        <!-- Botón de envío -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                🔐 Iniciar Sesión
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Enlaces adicionales -->
+                    <div class="text-center mt-4">
+                        <hr>
+                        <small class="text-muted">
+                            Paso 2 de 4 - Sistema de Login Progresivo
+                        </small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información sobre credenciales de prueba -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">🧪 Credenciales de Prueba</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>✅ Login Exitoso:</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>Usuario:</strong> <code>admin</code> | <strong>Pass:</strong> <code>123456</code></li>
+                                <li><strong>Usuario:</strong> <code>maria</code> | <strong>Pass:</strong> <code>123456</code></li>
+                                <li><strong>Usuario:</strong> <code>carlos</code> | <strong>Pass:</strong> <code>123456</code></li>
+                                <li><strong>Usuario:</strong> <code>ana</code> | <strong>Pass:</strong> <code>123456</code></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>❌ Para Probar Errores:</h6>
+                            <ul class="list-unstyled">
+                                <li><strong>Usuario:</strong> <code>admin</code> | <strong>Pass:</strong> <code>wrong</code></li>
+                                <li><strong>Usuario:</strong> <code>noexiste</code> | <strong>Pass:</strong> <code>123456</code></li>
+                                <li>Dejar campos vacíos</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Información técnica -->
+            <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="card-title">💡 ¿Qué cambió desde el Paso 1?</h5>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>🔄 Modificaciones:</h6>
+                            <ul class="list-unstyled">
+                                <li>✅ <strong>Formulario:</strong> + Campo password</li>
+                                <li>✅ <strong>Modelo:</strong> + Propiedad Password</li>
+                                <li>✅ <strong>BD:</strong> + Columna password</li>
+                                <li>✅ <strong>Validación:</strong> username + password</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>🎯 Nuevas Features:</h6>
+                            <ul class="list-unstyled">
+                                <li>✅ <strong>Login real:</strong> Autenticación completa</li>
+                                <li>✅ <strong>Dashboard:</strong> Página de bienvenida</li>
+                                <li>✅ <strong>Logout:</strong> Cerrar sesión</li>
+                                <li>✅ <strong>UX mejorada:</strong> Flujo completo</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Scripts para validación del lado del cliente -->
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
